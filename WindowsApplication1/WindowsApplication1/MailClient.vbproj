@@ -64,6 +64,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mail, Version=3.0.15091.1036, Culture=neutral, PublicKeyToken=6dc438ab78a525b3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Downloads\Mail\Examples\Lib\Mail.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -90,9 +94,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="MailViewer.Designer.vb">
+      <DependentUpon>MailViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MailViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Objects\Mail.vb" />
     <Compile Include="Objects\User.vb" />
+    <Compile Include="Utils\Email.vb" />
     <Compile Include="Utils\DBTableAccountOperations.vb" />
     <Compile Include="Utils\DbTableAccount.vb" />
+    <Compile Include="Utils\EmailHelper.vb" />
     <Compile Include="Utils\Utils.vb" />
     <Compile Include="LogIn.Designer.vb">
       <DependentUpon>LogIn.vb</DependentUpon>
@@ -138,6 +151,9 @@
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MailViewer.resx">
+      <DependentUpon>MailViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.vb</DependentUpon>
     </EmbeddedResource>
@@ -169,7 +185,7 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>

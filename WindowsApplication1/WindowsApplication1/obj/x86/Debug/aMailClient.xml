@@ -6,11 +6,7 @@ aMailClient
 </name>
 </assembly>
 <members>
-<member name="T:aMailClient.MailDBDataSet">
-	<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
-</member><member name="P:aMailClient.My.Resources.Resources.ResourceManager">
+<member name="P:aMailClient.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
@@ -22,6 +18,10 @@ Represents a strongly typed in-memory cache of data.
 </member><member name="T:aMailClient.My.Resources.Resources">
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:aMailClient.MailDBDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
 </summary>
 </member>
 </members>

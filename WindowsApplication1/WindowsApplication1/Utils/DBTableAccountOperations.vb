@@ -2,7 +2,7 @@
 Imports System.Data.SqlServerCe
 Imports System.Globalization
 Public Class DBTableAccountOperations
-    Dim con As SqlCeConnection = New SqlCeConnection("Data Source=C:\Users\AMOL\Documents\Visual Studio 2010\Projects\WindowsApplication1\WindowsApplication1\MailDB.sdf")
+    Dim con As SqlCeConnection = New SqlCeConnection(My.Settings.MailDBConnectionString) '"Data Source=C:\Users\AMOL\Documents\Visual Studio 2010\Projects\WindowsApplication1\WindowsApplication1\MailDB.sdf"
     Dim cmd As SqlCeCommand
     Dim myDA As SqlCeDataAdapter
     Dim myDataSet As DataSet

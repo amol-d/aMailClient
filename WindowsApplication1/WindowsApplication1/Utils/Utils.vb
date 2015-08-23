@@ -7,6 +7,11 @@
     Public Const PASSWORD_EMPTY_ERROR As String = "Password fiedls can not left empty"
     Public Const DISPLAY_NAME_EMPTY_ERROR As String = "Display Name can not left empty"
     Public Const EMAIL_EXISTS As String = "User with this email address already exists. Please try again with different email."
-    Friend Shared ACCOUNT_ADDED As String = "User added successfully"
-    Friend Shared SUCCESS_DIALOG_TITLE As String = "Success
+    Public Const ACCOUNT_ADDED As String = "User added successfully"
+    Public Const SUCCESS_DIALOG_TITLE As String = "Success"
+    Public Const VERSION_SUPPORT As String = "Current version of aMailClient supports Gmail accounts only."
+    Public Const VERSION_INFO As String = "Version Info"
+    Public Const TWO_STEP_VERIFICATION_NEEDED As String = "Two step verification needed"
+    Public Const TwO_STEP_VERIFICATION As String = "Two step authentication is enabled...Please disable two step verification or try creating application specific password!"
+
 End Class

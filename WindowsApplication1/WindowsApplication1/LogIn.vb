@@ -12,7 +12,11 @@ Public Class LogIn
 
     Private Sub TxtEmail_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtEmail.MouseLeave
         If IsValidEmail(TxtEmail.Text) Then
-            TxtEmail.ForeColor = Color.Green
+            If (TxtEmail.Text.Contains("gmail")) Then
+                TxtEmail.ForeColor = Color.Green
+            Else
+                MsgBox(Utils.VERSION_SUPPORT, MsgBoxStyle.Information, Utils.VERSION_INFO)
+            End If
         Else
             TxtEmail.ForeColor = Color.Red
         End If
@@ -78,6 +82,9 @@ Public Class LogIn
                     Dim user As User
                     user = New User(0, TxtFirstName.Text, TxtLastName.Text, TxtEmail.Text, TxtPassword.Text, TxtDisplayName.Text, TxtDisplayName.Text, "", 0, 0)
                     If (dbOperation.insertUser(user)) Then
+                        My.Settings.currentUserEmail = user.email
+                        My.Settings.currentUserPassword = user._pwd
+                        My.Settings.Save()
                         MsgBox(Utils.ACCOUNT_ADDED, MsgBoxStyle.Information, Utils.SUCCESS_DIALOG_TITLE)
                         Me.Close()
                     Else
@@ -100,6 +107,10 @@ Public Class LogIn
         'If (dbOperation.truncateUserTable()) Then
         'MsgBox("Truncated", MsgBoxStyle.MsgBoxHelp, "Success")
         'End If
-        Me.Close()
+        Dim helper As EmailHelper = New EmailHelper()
+
+        helper.getInboxForCurrentUser(My.Settings.currentUserEmail, My.Settings.currentUserPassword)
+
+        'Me.Close()
     End Sub
 End Class
