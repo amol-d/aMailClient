@@ -94,36 +94,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="MailViewer.Designer.vb">
+    <Compile Include="DbHelper\Operations\DBTableMailOperations.vb" />
+    <Compile Include="Objects\AppDelegate.vb" />
+    <Compile Include="Presentation\MailViewer.Designer.vb">
       <DependentUpon>MailViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="MailViewer.vb">
+    <Compile Include="Presentation\MailViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Objects\Mail.vb" />
+    <Compile Include="Objects\Mail.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Objects\User.vb" />
     <Compile Include="Utils\Email.vb" />
-    <Compile Include="Utils\DBTableAccountOperations.vb" />
-    <Compile Include="Utils\DbTableAccount.vb" />
+    <Compile Include="DbHelper\Operations\DBTableAccountOperations.vb" />
+    <Compile Include="DbHelper\Schema\DbTableAccount.vb" />
     <Compile Include="Utils\EmailHelper.vb" />
+    <Compile Include="DbHelper\Schema\DBTableMail.vb" />
     <Compile Include="Utils\Utils.vb" />
-    <Compile Include="LogIn.Designer.vb">
+    <Compile Include="Presentation\LogIn.Designer.vb">
       <DependentUpon>LogIn.vb</DependentUpon>
     </Compile>
-    <Compile Include="LogIn.vb">
+    <Compile Include="Presentation\LogIn.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MailDBDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MailDBDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="SignIn.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SignIn.Designer.vb">
-      <DependentUpon>SignIn.vb</DependentUpon>
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -140,22 +138,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Splash.Designer.vb">
+    <Compile Include="Presentation\Splash.Designer.vb">
       <DependentUpon>Splash.vb</DependentUpon>
     </Compile>
-    <Compile Include="Splash.vb">
+    <Compile Include="Presentation\Splash.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LogIn.resx">
+    <EmbeddedResource Include="Presentation\LogIn.resx">
       <DependentUpon>LogIn.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MailViewer.resx">
+    <EmbeddedResource Include="Presentation\MailViewer.resx">
       <DependentUpon>MailViewer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SignIn.resx">
-      <DependentUpon>SignIn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -163,7 +158,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Splash.resx">
+    <EmbeddedResource Include="Presentation\Splash.resx">
       <DependentUpon>Splash.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -191,6 +186,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="imageAssets\ic_contact.png" />
+    <Content Include="imageAssets\ic_delete.png" />
+    <Content Include="imageAssets\ic_forward.png" />
+    <Content Include="imageAssets\ic_next.png" />
+    <Content Include="imageAssets\ic_prev.png" />
+    <Content Include="imageAssets\ic_read_mail.png" />
+    <Content Include="imageAssets\ic_refresh.png" />
+    <Content Include="imageAssets\ic_user.png" />
     <Content Include="MailDB.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

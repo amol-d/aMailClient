@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.aMailClient.SplashScreen1
+            Me.MainForm = Global.aMailClient.Splash
         End Sub
     End Class
 End Namespace

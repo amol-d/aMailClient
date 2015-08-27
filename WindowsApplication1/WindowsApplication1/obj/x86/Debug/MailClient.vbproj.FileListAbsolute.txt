@@ -20,10 +20,11 @@ C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplicati
 C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\bin\Debug\aMailClient.pdb
 C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\bin\Debug\aMailClient.xml
 C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\obj\x86\Debug\aMailClient.LogIn.resources
-C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\obj\x86\Debug\aMailClient.splash.resources
 C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\obj\x86\Debug\aMailClient.Resources.resources
-C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\obj\x86\Debug\aMailClient.SplashScreen1.resources
 C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\obj\x86\Debug\MailClient.vbproj.GenerateResource.Cache
 C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\bin\Debug\Mail.dll
 C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\bin\Debug\Mail.xml
 C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\obj\x86\Debug\MailClient.vbprojResolveAssemblyReference.cache
+C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\obj\x86\Debug\aMailClient.MailViewer.resources
+C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\obj\x86\Debug\aMailClient.Splash.resources
+C:\Users\AMOL\Documents\Visual Studio 2010\Projects\aMailClient\WindowsApplication1\WindowsApplication1\bin\Debug\Objects\Mail.vb

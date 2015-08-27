@@ -107,10 +107,7 @@ Public Class LogIn
         'If (dbOperation.truncateUserTable()) Then
         'MsgBox("Truncated", MsgBoxStyle.MsgBoxHelp, "Success")
         'End If
-        Dim helper As EmailHelper = New EmailHelper()
 
-        helper.getInboxForCurrentUser(My.Settings.currentUserEmail, My.Settings.currentUserPassword)
-
-        'Me.Close()
+        Me.Close()
     End Sub
 End Class
