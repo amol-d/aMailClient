@@ -5,7 +5,7 @@ Imports System.Text.RegularExpressions
 Public Class LogIn
     Dim dbOperation As DBTableAccountOperations = New DBTableAccountOperations()
     Dim invalid As Boolean = False
-
+    Dim mailHelper As EmailHelper = New EmailHelper()
     Private Sub TxtFirstName_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtFirstName.TextChanged
         TxtDisplayName.Text = TxtFirstName.Text
     End Sub
@@ -67,7 +67,7 @@ Public Class LogIn
         ElseIf TxtLastName.Text.Length = 0 Then
             MsgBox(Utils.LAST_NAME_EMPTY_ERROR, MsgBoxStyle.Critical, Utils.ERROR_DIALOG_TITLE)
             'Email should not be empty and invalid as well
-        ElseIf TxtEmail.Text.Length = 0 And Not IsValidEmail(TxtEmail.Text) Then
+        ElseIf TxtEmail.Text.Length = 0 And Not TxtEmail.Text.Contains("gmail") And Not IsValidEmail(TxtEmail.Text) Then
             MsgBox(Utils.EMAIL_NOT_VALID_ERROR, MsgBoxStyle.Critical, Utils.ERROR_DIALOG_TITLE)
             'password should not be empty
         ElseIf TxtPassword.Text.Length = 0 Then
@@ -81,16 +81,22 @@ Public Class LogIn
                 If (Not dbOperation.isUserExists(TxtEmail.Text)) Then
                     Dim user As User
                     user = New User(0, TxtFirstName.Text, TxtLastName.Text, TxtEmail.Text, TxtPassword.Text, TxtDisplayName.Text, TxtDisplayName.Text, "", 0, 0)
-                    If (dbOperation.insertUser(user)) Then
-                        My.Settings.currentUserEmail = user.email
-                        My.Settings.currentUserPassword = user._pwd
-                        My.Settings.Save()
-                        MsgBox(Utils.ACCOUNT_ADDED, MsgBoxStyle.Information, Utils.SUCCESS_DIALOG_TITLE)
-                        Me.Close()
+                    If mailHelper.authenticateUser(user) Then
+                        If (dbOperation.insertUser(user)) Then
+                            My.Settings.currentUserEmail = user.email
+                            My.Settings.currentUserPassword = user._pwd
+                            My.Settings.Save()
+                            MsgBox(Utils.ACCOUNT_ADDED, MsgBoxStyle.Information, Utils.SUCCESS_DIALOG_TITLE)
+                            AppDelegate.GetSingletonInstance().setCurrentUser(user)
+                            Me.Close()
+                            MailViewer.Show()
+                        Else
+                            'MsgBox(Utils.EMAIL_EXISTS, MsgBoxStyle.Critical, Utils.ERROR_DIALOG_TITLE)
+                            'TxtEmail.Text = ""
+                            'TxtPassword.Text = ""
+                        End If
                     Else
-                        'MsgBox(Utils.EMAIL_EXISTS, MsgBoxStyle.Critical, Utils.ERROR_DIALOG_TITLE)
-                        'TxtEmail.Text = ""
-                        'TxtPassword.Text = ""
+
                     End If
                 Else
                     MsgBox(Utils.EMAIL_EXISTS, MsgBoxStyle.Critical, Utils.ERROR_DIALOG_TITLE)

@@ -5,13 +5,15 @@
     Public flag_read, flag_favorite, flag_attachment, flag_reply As Boolean
     Public from_list As String
     Public to_list, cc_list, bcc_list, reply_to_list As List(Of String)
+    Public msg_id As String
 
-    Public Sub New(ByVal _id As Integer, ByVal acID As Integer, ByVal display_name As String, ByVal time_of_arrival As Date, ByVal subject As String,
+    Public Sub New(ByVal msg_id As String, ByVal _id As Integer, ByVal acID As Integer, ByVal display_name As String, ByVal time_of_arrival As Date, ByVal subject As String,
                    ByVal flag_read As Boolean, ByVal flag_favorite As Boolean, ByVal flag_attachment As Boolean,
                    ByVal flag_reply As Boolean, ByVal from_list As String,
                    ByVal to_list As List(Of String), ByVal cc_list As List(Of String),
                    ByVal bcc_list As List(Of String), ByVal reply_to_list As List(Of String),
                    ByVal mailbox_type As String, ByVal retry_send_time As Integer, ByVal message_text As String)
+        Me.msg_id = msg_id
         Me._id = _id
         Me.acID = acID
         Me.display_name = display_name

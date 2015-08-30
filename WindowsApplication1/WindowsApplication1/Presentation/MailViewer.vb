@@ -37,6 +37,7 @@
             mails = mailHelper.getInboxForCurrentUser(user)
             dbMailHelper = New DBTableMailOperations()
             dbMailHelper.BulkInsertAllMail(mails)
+            mails = mailHelper.getSentForCurrentUser(user)
         End If
     End Sub
 End Class
