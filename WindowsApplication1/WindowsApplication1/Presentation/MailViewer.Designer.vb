@@ -23,20 +23,15 @@ Partial Class MailViewer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.lstInbox = New System.Windows.Forms.ListView()
         Me.cmbMailFolders = New System.Windows.Forms.ComboBox()
         Me.mailPanel = New System.Windows.Forms.Panel()
         Me.mailFetcher = New System.ComponentModel.BackgroundWorker()
         Me.FetchMailTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.lstInbox = New System.Windows.Forms.ListBox()
+        Me.fetchOutbox = New System.ComponentModel.BackgroundWorker()
+        Me.fetchSent = New System.ComponentModel.BackgroundWorker()
+        Me.fetchTrash = New System.ComponentModel.BackgroundWorker()
         Me.SuspendLayout()
-        '
-        'lstInbox
-        '
-        Me.lstInbox.Location = New System.Drawing.Point(1, 34)
-        Me.lstInbox.Name = "lstInbox"
-        Me.lstInbox.Size = New System.Drawing.Size(167, 308)
-        Me.lstInbox.TabIndex = 0
-        Me.lstInbox.UseCompatibleStateImageBehavior = False
         '
         'cmbMailFolders
         '
@@ -61,23 +56,43 @@ Partial Class MailViewer
         'FetchMailTimer
         '
         '
+        'lstInbox
+        '
+        Me.lstInbox.FormattingEnabled = True
+        Me.lstInbox.Location = New System.Drawing.Point(1, 36)
+        Me.lstInbox.Name = "lstInbox"
+        Me.lstInbox.Size = New System.Drawing.Size(164, 303)
+        Me.lstInbox.TabIndex = 3
+        '
+        'fetchOutbox
+        '
+        '
+        'fetchSent
+        '
+        '
+        'fetchTrash
+        '
+        '
         'MailViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(437, 343)
+        Me.Controls.Add(Me.lstInbox)
         Me.Controls.Add(Me.mailPanel)
         Me.Controls.Add(Me.cmbMailFolders)
-        Me.Controls.Add(Me.lstInbox)
         Me.Name = "MailViewer"
         Me.Text = "MailViewer"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents lstInbox As System.Windows.Forms.ListView
     Friend WithEvents cmbMailFolders As System.Windows.Forms.ComboBox
     Friend WithEvents mailPanel As System.Windows.Forms.Panel
     Friend WithEvents mailFetcher As System.ComponentModel.BackgroundWorker
     Friend WithEvents FetchMailTimer As System.Windows.Forms.Timer
+    Friend WithEvents lstInbox As System.Windows.Forms.ListBox
+    Friend WithEvents fetchOutbox As System.ComponentModel.BackgroundWorker
+    Friend WithEvents fetchSent As System.ComponentModel.BackgroundWorker
+    Friend WithEvents fetchTrash As System.ComponentModel.BackgroundWorker
 End Class

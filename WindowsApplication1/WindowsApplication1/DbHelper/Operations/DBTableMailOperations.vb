@@ -10,6 +10,8 @@ Public Class DBTableMailOperations
     Dim reader As SqlCeDataReader
     Public flag_read, flag_favorite, flag_attachment, flag_reply As Integer
     Public from_list, to_list, cc_list, bcc_list, reply_to_list As String
+    Public Const MAIL_BOX_TYPE_INBOX As String = "INBOX"
+    Public Const MAIL_BOX_TYPE_SENT_MAILS As String = "SENT"
 
     Public Function BulkInsertAllMail(ByVal mails As List(Of Mail)) As Boolean
         Dim user As User = AppDelegate.GetSingletonInstance().getCurrentUser()
@@ -67,5 +69,75 @@ Public Class DBTableMailOperations
 
         End Try
         Return idList
+    End Function
+
+    Public Function getInboxForCurrentUser(ByVal user_id As Integer) As List(Of Mail)
+        Dim mails As List(Of Mail) = New List(Of Mail)
+        Try
+            If con.State = ConnectionState.Closed Then con.Open()
+            Dim selectCommand As String = "SELECT * FROM " & DBTableMail.TABLE_MAIL & " WHERE (" & DBTableMail.COLUMN_AC_ID & " = " & user_id & " AND " & DBTableMail.COLUMN_MAILBOX_TYPE & "= '" & MAIL_BOX_TYPE_INBOX & "')"
+            cmd = New SqlCeCommand(selectCommand, con)
+            Dim reader = cmd.ExecuteReader()
+            While reader.Read()
+                mails.Add(New Mail(
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_MESSAGE_ID)),
+                          reader.GetInt32(reader.GetOrdinal(DBTableMail.COLUMN_ID)),
+                          reader.GetInt32(reader.GetOrdinal(DBTableMail.COLUMN_AC_ID)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_DISPLAY_NAME)),
+                          reader.GetDateTime(reader.GetOrdinal(DBTableMail.COLUMN_TIME_OF_ARRIVAL)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_SUBJECT)),
+                          reader.GetBoolean(reader.GetOrdinal(DBTableMail.COLUMN_FLAG_READ)),
+                          reader.GetBoolean(reader.GetOrdinal(DBTableMail.COLUMN_FLAG_FAVORITE)),
+                          reader.GetBoolean(reader.GetOrdinal(DBTableMail.COLUMN_FLAG_ATTACHMENT)),
+                          reader.GetBoolean(reader.GetOrdinal(DBTableMail.COLUMN_FLAG_REPLY)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_FROM_LIST)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_TO_LIST)).Split(",").ToList(),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_CC_LIST)).Split(",").ToList(),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_BCC_LIST)).Split(",").ToList(),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_REPLY_TO_LIST)).Split(",").ToList(),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_MAILBOX_TYPE)),
+                          reader.GetInt32(reader.GetOrdinal(DBTableMail.COLUMN_SEND_RETRY)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_MESSAGE_TEXT))))
+            End While
+            con.Close()
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+        End Try
+        Return mails
+    End Function
+
+    Public Function getSentMailsForCurrentUser(ByVal user_id As Integer) As List(Of Mail)
+        Dim mails As List(Of Mail) = New List(Of Mail)
+        Try
+            If con.State = ConnectionState.Closed Then con.Open()
+            Dim selectCommand As String = "SELECT * FROM " & DBTableMail.TABLE_MAIL & " WHERE (" & DBTableMail.COLUMN_AC_ID & " = " & user_id & " AND " & DBTableMail.COLUMN_MAILBOX_TYPE & "= '" & MAIL_BOX_TYPE_SENT_MAILS & "')"
+            cmd = New SqlCeCommand(selectCommand, con)
+            Dim reader = cmd.ExecuteReader()
+            While reader.Read()
+                mails.Add(New Mail(
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_MESSAGE_ID)),
+                          reader.GetInt32(reader.GetOrdinal(DBTableMail.COLUMN_ID)),
+                          reader.GetInt32(reader.GetOrdinal(DBTableMail.COLUMN_AC_ID)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_DISPLAY_NAME)),
+                          reader.GetDateTime(reader.GetOrdinal(DBTableMail.COLUMN_TIME_OF_ARRIVAL)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_SUBJECT)),
+                          reader.GetBoolean(reader.GetOrdinal(DBTableMail.COLUMN_FLAG_READ)),
+                          reader.GetBoolean(reader.GetOrdinal(DBTableMail.COLUMN_FLAG_FAVORITE)),
+                          reader.GetBoolean(reader.GetOrdinal(DBTableMail.COLUMN_FLAG_ATTACHMENT)),
+                          reader.GetBoolean(reader.GetOrdinal(DBTableMail.COLUMN_FLAG_REPLY)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_FROM_LIST)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_TO_LIST)).Split(",").ToList(),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_CC_LIST)).Split(",").ToList(),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_BCC_LIST)).Split(",").ToList(),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_REPLY_TO_LIST)).Split(",").ToList(),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_MAILBOX_TYPE)),
+                          reader.GetInt32(reader.GetOrdinal(DBTableMail.COLUMN_SEND_RETRY)),
+                          reader.GetString(reader.GetOrdinal(DBTableMail.COLUMN_MESSAGE_TEXT))))
+            End While
+            con.Close()
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+        End Try
+        Return mails
     End Function
 End Class
